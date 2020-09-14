@@ -1,3 +1,5 @@
+const { playSound } = require('./utils/music');
+
 exports.run = async (client, message) => {
 	var channel = message.member.voice.channel;
 	
@@ -8,14 +10,6 @@ exports.run = async (client, message) => {
 		playSound(client, connection, './samo.mp3');
 	}
 };
-
-function playSound(client, connection, resource) {
-	const dispatcher = connection.play(resource, {volume: client.volume});
-	dispatcher.on('finish', () => {
-		connection.channel.leave();
-		dispatcher.destroy();
-	})
-}
 
 exports.help = {
 	name: 'samo'
