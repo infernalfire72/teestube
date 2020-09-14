@@ -1,3 +1,4 @@
+const { playSound } = require('../utils/music');
 const ytdl = require('ytdl-core');
 
 exports.run = async (client, message, args) => {
@@ -5,13 +6,9 @@ exports.run = async (client, message, args) => {
 	
 	if (channel) {
 		const connection = await channel.join()
-		
 		const item = ytdl(args[0], { filter: 'audioonly' });
-		const dispatcher = connection.play(item, {volume: client.volume});
-		dispatcher.on('finish', () => {
-			channel.leave();
-			dispatcher.destroy();
-		})
+		
+		playSound(client, connection, item);
 	}
 };
 

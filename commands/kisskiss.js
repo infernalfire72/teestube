@@ -1,4 +1,4 @@
-const { playSound } = require('./utils/music');
+const { playSound } = require('../utils/music');
 
 exports.run = async (client, message) => {
 	var channel = message.member.voice.channel;
